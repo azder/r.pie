@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Raphael Pie Demo - jsFiddle demo</title>
+
+    <link rel="stylesheet" type="text/css" href="js/normalize.css">
+    <link rel="stylesheet" type="text/css" href="js/result-light.css"/>
+
+    <style type="text/css">
+      /* A font by Jos Buivenga (exljbris) -> www.exljbris.nl */
+      @font-face {
+        font-family: "Fontin-Sans";
+        src: url(fontin-sans.otf) format("opentype");
+      }
+      body {
+        background: #000 url(images/black.png);
+        color: #fff;
+        font: 300 100.1% Fontin-Sans, "Gill Sans", Calibri, "Trebuchet MS", sans-serif;
+      }
+      #holder {
+        height: 480px;
+        left: 50%;
+        margin: -240px 0 0 -320px;
+        position: absolute;
+        top: 50%;
+        width: 640px;
+      }
+      #copy {
+        bottom: 0;
+        font: 300 .7em Fontin-Sans, "Gill Sans", Calibri, "Trebuchet MS", sans-serif;
+        position: absolute;
+        right: 1em;
+        text-align: right;
+      }
+      #copy a {
+        color: #fff;
+      }
+      #holder {
+        margin: -350px 0 0 -350px;
+        width: 700px;
+        height: 700px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <table style="display: none;">
+      <tbody>
+        <tr>
+          <th>Ruby</th>
+          <td>40%</td>
+        </tr>
+        <tr>
+          <th>JavaScript</th>
+          <td>26%</td>
+        </tr>
+        <tr>
+          <th>Shell</th>
+          <td>5%</td>
+        </tr>
+        <tr>
+          <th>Python</th>
+          <td>5%</td>
+        </tr>
+        <tr>
+          <th>PHP</th>
+          <td>4%</td>
+        </tr>
+        <tr>
+          <th>C</th>
+          <td>4%</td>
+        </tr>
+        <tr>
+          <th>Perl</th>
+          <td>3%</td>
+        </tr>
+        <tr>
+          <th>C++</th>
+          <td>2%</td>
+        </tr>
+        <tr>
+          <th>Java</th>
+          <td>2%</td>
+        </tr>
+        <tr>
+          <th>Objective-C</th>
+          <td>2%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="holder">
+      &nbsp;
+    </div>
+    <p id="copy">
+      Demo of <a href="http://raphaeljs.com/" target="_blank">Raphaël</a>—JavaScript Vector Library
+    </p>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/raphael.js"></script>
+    <script type="text/javascript" src="js/pie.js"  ></script>
+    <script>
+        (function(raphael) {
+            //
+            'use strict';
+            $(function() {
+                var values = [], labels = [];
+                $("tr").each(function() {
+                    values.push(parseInt($("td", this).text(), 10));
+                    labels.push($("th", this).text());
+                });
+                $("table").hide();
+
+                raphael("holder", 700, 700).pieChart({
+                    cx: 350,
+                    cy: 350,
+                    r: 200,
+                    values: values,
+                    labels: labels,
+                    stroke: "#fff",
+                    steps: 10, // default
+                    delay: 50 // default
+                });
+            });
+        })(Raphael.ninja());
+    </script>
+  </body>
+</html>
